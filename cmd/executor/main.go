@@ -12,16 +12,16 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", compileAndRunCodeHandler)
+	http.HandleFunc("/", handler)
 	http.ListenAndServe(":8000", nil)
 }
 
-func compileAndRunCodeHandler(w http.ResponseWriter, r *http.Request) {
-	out := compileAndRunCode()
+func handler(w http.ResponseWriter, r *http.Request) {
+	out := compileAndRun()
 	w.Write(out)
 }
 
-func compileAndRunCode() []byte {
+func compileAndRun() []byte {
 
 	tmpFile, err := os.CreateTemp("", "test-*.c")
 	if err != nil {
