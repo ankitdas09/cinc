@@ -8,12 +8,12 @@ RUN go mod tidy
 
 COPY . .
 
-RUN go build ./cmd/compiler
+RUN go build ./cmd/executor
 
 FROM docker:26.1.0-dind
 
 WORKDIR /
 
-COPY --from=build /app/compiler compiler
+COPY --from=build /app/executor executor
 
-CMD ["/compiler"]
+CMD ["/executor"]
